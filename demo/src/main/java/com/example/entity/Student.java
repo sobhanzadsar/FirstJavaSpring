@@ -1,12 +1,13 @@
 package com.example.entity;
 
-import CreateStudentRequest.CreateStudentRequest;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.example.request.CreateStudentRequest;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,8 +18,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "student")
-public class Student{
-	
+public class Student {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -33,9 +34,9 @@ public class Student{
 	@Column(name = "email")
 	private String email;
 	
-	public Student (CreateStudentRequest createStudentRequest ) {
-		this.firstName =createStudentRequest.getFirstName();
-		this.lastName =createStudentRequest.getLastName();
-		this.email =createStudentRequest.getEmail();
+	public Student (CreateStudentRequest createStudentRequest) {
+		this.firstName = createStudentRequest.getFirstName();
+		this.lastName = createStudentRequest.getLastName();
+		this.email = createStudentRequest.getEmail();
 	}
 }

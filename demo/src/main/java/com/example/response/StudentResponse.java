@@ -9,13 +9,12 @@ import lombok.Setter;
 @Setter
 @Getter
 public class StudentResponse {
-	
 
 	private long id;
-	
+
 	@JsonProperty("first_name")
 	private String firstName;
-	
+
 	private String lastName;
 
 	private String email;
@@ -26,4 +25,5 @@ public class StudentResponse {
 		this.lastName = student.getLastName();
 		this.email = student.getEmail();
 	}
+
 }

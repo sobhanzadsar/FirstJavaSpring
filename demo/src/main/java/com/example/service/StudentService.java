@@ -7,23 +7,22 @@ import org.springframework.stereotype.Service;
 
 import com.example.entity.Student;
 import com.example.repository.StudentRepository;
-
-import CreateStudentRequest.CreateStudentRequest;
+import com.example.request.CreateStudentRequest;
 
 @Service
-public class StudentService{
+public class StudentService {
 
 	@Autowired
 	StudentRepository studentRepository;
 	
-	public List<Student> getAllStudents() {
+	public List<Student> getAllStudents () {
 		return studentRepository.findAll();
 	}
 	
-	public Student createStudent (CreateStudentRequest createStudentRequest ) {
+	public Student createStudent (CreateStudentRequest createStudentRequest) {
 		Student student = new Student(createStudentRequest);
 		
-		student =studentRepository.save(student);
+		student = studentRepository.save(student);
 		return student;
 	}
 }
