@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.entity.Student;
@@ -47,11 +46,11 @@ public class StudentController {
 		
 		return new StudentResponse(student);
 	}
-
+	
 	@PutMapping("update")
 	public StudentResponse updateStudent (@Valid @RequestBody UpdateStudentRequest updateStudentRequest) {
 		Student student = studentService.updateStudent(updateStudentRequest);
-	
+		
 		return new StudentResponse(student);
 	}
 
@@ -65,6 +64,17 @@ public class StudentController {
 	public String deleteStudent (@PathVariable long id) {
 		return studentService.deleteStudent(id);
 	}
+	
+	@GetMapping("getByFirstName/{firstName}")
+	public List<StudentResponse> getByFirstName (@PathVariable String firstName) {
+		List<Student> studentList = studentService.getByFirstName(firstName);
+		
+		List<StudentResponse> studentResponseList = new ArrayList<StudentResponse>();
+		
+		studentList.stream().forEach(student -> {
+			studentResponseList.add(new StudentResponse(student));
+		});
+		
+		return studentResponseList;
+	}
 }
-
-
