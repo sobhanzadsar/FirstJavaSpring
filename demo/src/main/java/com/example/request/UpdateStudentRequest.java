@@ -8,14 +8,14 @@ import lombok.Setter;
 @Setter
 @Getter
 public class UpdateStudentRequest {
-	
-	@NotNull(message = "Student Id is required")
-	private Long id;
-	
-	private String firstName;
 
-	private String lastName;
+    @NotNull(message = "Student ID is required")
+    private Long id;
 
-	private String email;
+    private String firstName;
+
+    private String lastName;
+
+    private String email;
 
 }

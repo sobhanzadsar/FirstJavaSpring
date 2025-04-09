@@ -12,7 +12,7 @@ import lombok.Setter;
 public class CreateStudentRequest {
 	
 	@JsonProperty("first_name")
-	@NotBlank(message = "First name is required")
+	@NotBlank(message = "First name is requierd")
 	private String firstName;
 
 	private String lastName;
