@@ -55,7 +55,8 @@ public class StudentController {
 		return new StudentResponse(student);
 	}
 
-	//حذف از طریق ارسال ایدی به صورت ?id=x
+	// حذف از طریق ارسال ایدی به صورت
+	// http://localhost:8080/api/student/delete?id=4
 	// @DeleteMapping("delete")
 	// public String deleteStudent (@RequestParam long id) {
 	// 	return studentService.deleteStudent(id);
@@ -65,6 +66,21 @@ public class StudentController {
 	public String deleteStudent (@PathVariable long id) {
 		return studentService.deleteStudent(id);
 	}
+
+	@GetMapping("getByFirstName/{firstName}")
+	public List<StudentResponse> getByFirstName (@PathVariable String firstName){
+		List<Student> studentList = studentService.getByFirstName(firstName);
+		List<StudentResponse> studentResponseList = new ArrayList<StudentResponse>();
+		
+		studentList.stream().forEach(student -> {
+			studentResponseList.add(new StudentResponse(student));
+		});
+		return studentResponseList;
+	}
+
+	@GetMapping("getByFirstNameAndLastName/{firstName}/{lastName}")
+	public StudentResponse getByFirstNameAndLastName (@PathVariable String firstName,
+		@PathVariable String lastName){
+			return new StudentResponse(studentService.getByFirstNameAndLastName(firstName, lastName));
+		}
 }
-
-
