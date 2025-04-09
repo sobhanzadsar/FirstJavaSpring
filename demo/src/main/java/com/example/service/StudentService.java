@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.example.entity.Student;
 import com.example.repository.StudentRepository;
 import com.example.request.CreateStudentRequest;
@@ -25,30 +26,25 @@ public class StudentService {
 		student = studentRepository.save(student);
 		return student;
 	}
-
+	
 	public Student updateStudent (UpdateStudentRequest updateStudentRequest) {
 		Student student = studentRepository.findById(updateStudentRequest.getId()).get();
-
-		if (updateStudentRequest.getFirstName()!= null && !updateStudentRequest.getFirstName().isEmpty()){
-			student.setFirstName(updateStudentRequest.getFirstName());
-		} 
-
-		student = studentRepository.save(student);
 		
+		if (updateStudentRequest.getFirstName() != null && 
+				!updateStudentRequest.getFirstName().isEmpty()) {
+			student.setFirstName(updateStudentRequest.getFirstName());
+		}
+		
+		student = studentRepository.save(student);
 		return student;
 	}
-
+	
 	public String deleteStudent (long id) {
 		studentRepository.deleteById(id);
-		return "Student has been delete successfully";
+		return "Student has been deleted successfully";
 	}
-
-	public List<Student> getByFirstName (String firstName){
+	
+	public List<Student> getByFirstName (String firstName) {
 		return studentRepository.findByFirstName(firstName);
 	}
-
-	public Student getByFirstNameAndLastName (String firstName, String lastName){
-		return studentRepository.findByFirstNameAndLastName(firstName,lastName);
-	}
-
 }
