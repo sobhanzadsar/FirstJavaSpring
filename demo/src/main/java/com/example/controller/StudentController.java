@@ -25,6 +25,7 @@ import com.example.service.StudentService;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+
 @RestController
 @RequestMapping("/api/student/")
 public class StudentController {
@@ -109,6 +110,57 @@ public class StudentController {
 		});
 		return studentResponseList; 
 		}
+
+		@GetMapping("getAllWithPagination")
+		public List<StudentResponse> getAllWithPagination(@RequestParam int pageNo, @RequestParam int pageSize) {
+			
+			List<Student> studnetList = studentService.getAllWithPagination(pageNo, pageSize);
+
+			List<StudentResponse> studentResponsesList = new ArrayList<StudentResponse>();
+
+			studnetList.stream().forEach(student -> {
+				studentResponsesList.add(new StudentResponse(student));
+			});
+			return studentResponsesList;
+		}
 		
-		
+		@GetMapping("getAllWithSorting")
+		public List<StudentResponse> getAllWithSorting() {
+			
+			List<Student> studnetList = studentService.getAllWithSorting();
+
+			List<StudentResponse> studentResponsesList = new ArrayList<StudentResponse>();
+
+			studnetList.stream().forEach(student -> {
+				studentResponsesList.add(new StudentResponse(student));
+			});
+			return studentResponsesList;
+		}
+				
+		@GetMapping("like/{firstName}")
+		public List<StudentResponse> like(@PathVariable String firstName) {
+			
+			List<Student> studnetList = studentService.like(firstName);
+
+			List<StudentResponse> studentResponsesList = new ArrayList<StudentResponse>();
+
+			studnetList.stream().forEach(student -> {
+				studentResponsesList.add(new StudentResponse(student));
+			});
+			return studentResponsesList;
+		}
+				
+		@GetMapping("startWith/{firstName}")
+		public List<StudentResponse> startWith(@PathVariable String firstName) {
+			
+			List<Student> studnetList = studentService.startWith(firstName);
+
+			List<StudentResponse> studentResponsesList = new ArrayList<StudentResponse>();
+
+			studnetList.stream().forEach(student -> {
+				studentResponsesList.add(new StudentResponse(student));
+			});
+			return studentResponsesList;
+		}
+
 }
