@@ -5,8 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.example.request.CreateStudentRequest;
 
@@ -35,14 +36,13 @@ public class Student {
 	@Column(name = "email")
 	private String email;
 	
-	@Transient
-	private String fullName;
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
 
 	public Student (CreateStudentRequest createStudentRequest) {
 		this.firstName = createStudentRequest.getFirstName();
 		this.lastName = createStudentRequest.getLastName();
 		this.email = createStudentRequest.getEmail();
-		this.fullName = createStudentRequest.getFirstName() + " " +
-				createStudentRequest.getLastName();
 	}
 }
