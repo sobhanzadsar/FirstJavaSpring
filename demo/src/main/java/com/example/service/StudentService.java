@@ -79,5 +79,10 @@ public class StudentService {
 	public List<Student> startWith(String firstName){
 		return studentRepository.findByFirstNameStartingWith(firstName);
 	}
-
+	public Integer updateStudentWithJpql (Long id, String firstName){
+		return studentRepository.updateFirstName(id, firstName);
+	}
+	public Integer deleteStudent (String firstName){
+		return studentRepository.deleteByFirstName(firstName);
+	}
 }
