@@ -1,5 +1,7 @@
 package com.example.request;
 
+import java.util.List;
+
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,4 +24,13 @@ public class CreateStudentRequest {
 	private String street;
 
 	private String city;
+
+	private List<CreateSubjectRequest> subjectsLearning;
+
+	public Double getMarksObtained() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getMarksObtained'");
+	}
+
+	
 }

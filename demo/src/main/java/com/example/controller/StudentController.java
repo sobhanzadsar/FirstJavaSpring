@@ -32,6 +32,8 @@ public class StudentController {
 
 	@Autowired
 	StudentService studentService;
+
+	
 	
 	@GetMapping("getAll")
 	public List<StudentResponse> getAllStudents () {
@@ -99,6 +101,7 @@ public class StudentController {
 			});
 			return studentResponseList;
 		}
+	
 
 		@GetMapping("getByFirstNameIn")
 		public List<StudentResponse> getByFirstNameIn(@RequestBody InQueryRequest inQueryRequest) {
